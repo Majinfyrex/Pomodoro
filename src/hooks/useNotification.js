@@ -64,7 +64,7 @@ export const useNotification = (volume = 0.5) => {
     if (!audioEnabled) return
 
     try {
-      const audio = new Audio('/notification.mp3')
+      const audio = new Audio(import.meta.env.BASE_URL + 'notification.mp3')
       // On utilise le volume choisi par l'utilisateur (entre 0 et 1)
       audio.volume = volume
       audio.play().catch(error => {
