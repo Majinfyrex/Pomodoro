@@ -2,6 +2,7 @@ import React from 'react'
 import { usePomodoro } from '../../context/PomodoroContext'
 import DailyStats from './DailyStats'
 import WeeklyStats from './WeeklyStats'
+import StreakCalendar from './StreakCalendar'
 
 // Le bloc avec toutes les statistiques
 const Stats = () => {
@@ -19,6 +20,11 @@ const Stats = () => {
       <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
         <DailyStats />
         <WeeklyStats />
+      </div>
+
+      {/* Calendrier de productivité (nouveau !) */}
+      <div className="mt-6">
+        <StreakCalendar />
       </div>
     </div>
   )

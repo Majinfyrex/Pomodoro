@@ -24,12 +24,16 @@ export const minutesToSeconds = (minutes) => minutes * 60
 export const secondsToMinutes = (seconds) => Math.floor(seconds / 60)
 
 /**
- * Retourne la date du jour au format YYYY-MM-DD
+ * Retourne la date du jour au format YYYY-MM-DD (heure locale)
  * @param {Date} [date=new Date()] - Date à formater
  * @returns {string} Date formatée (ex: "2026-01-12")
  */
 export const getDateString = (date = new Date()) => {
-  return date.toISOString().split('T')[0]
+  // On utilise l'heure locale au lieu de UTC pour éviter les problèmes de fuseau horaire
+  const year = date.getFullYear()
+  const month = String(date.getMonth() + 1).padStart(2, '0')
+  const day = String(date.getDate()).padStart(2, '0')
+  return `${year}-${month}-${day}`
 }
 
 /**
