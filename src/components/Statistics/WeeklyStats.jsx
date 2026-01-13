@@ -11,8 +11,15 @@ const WeeklyStats = () => {
   // On cherche le jour avec le plus de sessions pour ajuster le graphique
   const maxCount = Math.max(...dailyStats.map(d => d.count), 1)
 
-  // Les initiales des jours (Lundi, Mardi, etc.)
-  const dayLabels = ['L', 'M', 'M', 'J', 'V', 'S', 'D']
+  // Fonction pour obtenir la première lettre du jour de la semaine
+  const getDayLabel = (dateString) => {
+    // Parse la date au format YYYY-MM-DD de manière sûre (en heure locale)
+    const [year, month, day] = dateString.split('-').map(Number)
+    const date = new Date(year, month - 1, day) // month - 1 car les mois commencent à 0
+    const dayIndex = date.getDay() // 0 = dimanche, 1 = lundi, etc.
+    const labels = ['D', 'L', 'M', 'M', 'J', 'V', 'S'] // Dimanche est à l'index 0
+    return labels[dayIndex]
+  }
 
   return (
     <div className={`rounded-lg p-4 shadow-lg ${
@@ -63,7 +70,7 @@ const WeeklyStats = () => {
                     : (isDark ? 'text-gray-400' : 'text-gray-500')
                 }`}
               >
-                {dayLabels[index]}
+                {getDayLabel(day.date)}
               </span>
             </div>
           )
